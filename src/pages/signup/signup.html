@@ -1,0 +1,55 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Signup</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+      <ion-item padding-right>
+        <ion-input type="text" placeholder="Retail Name"></ion-input>
+       </ion-item>
+
+       <ion-item padding-right>
+          <ion-input type="text" placeholder="Retail Address" ></ion-input>
+       </ion-item>
+
+       <ion-item padding-right>
+          <ion-input type="text" placeholder="Retailer Name" ></ion-input>
+       </ion-item>
+
+       <ion-item padding-right>
+          <ion-input type="number" placeholder="Contact Number" ></ion-input>
+       </ion-item>
+       
+       <ion-item padding-right>
+          <ion-input type="email" placeholder="Email Address" ></ion-input>
+       </ion-item>
+
+       <ion-item padding-right>
+          <ion-input type="text" placeholder="Username" ></ion-input>
+       </ion-item>
+
+       <ion-item padding-right>
+        <ion-input type="password" placeholder="Password" ></ion-input>
+       </ion-item>
+
+       <ion-item padding-right class="pics">
+          <ion-input  type="file" accept="image/*" id="pic"></ion-input>
+       </ion-item>
+
+       <ion-item padding-right class="cits">
+          <ion-input  type="file" accept="image/*" id="cit"></ion-input>
+       </ion-item>
+
+       <div padding>
+          <button id="up" (click)="this.clickit(0)" ion-button color="secondary" block>Upload Retailer Photo</button>
+          <button id="uc" (click)="this.clickit(1)" ion-button color="danger" block>Upload Retailer Citizenship</button>
+       </div>
+       
+       <div padding>
+          <button ion-button color="primary" block>Sign Up</button>
+       </div>
+
+</ion-content>

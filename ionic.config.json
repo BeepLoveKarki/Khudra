@@ -1,0 +1,7 @@
+{
+  "name": "khudra",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular"
+}

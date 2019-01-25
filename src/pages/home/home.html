@@ -1,0 +1,32 @@
+<ion-header>
+  <!--ion-navbar>
+    <ion-title>
+    </ion-title>
+  </ion-navbar-->
+</ion-header>
+
+<ion-content padding>
+      
+    <div padding>
+      <img id="mimg" src="assets/imgs/Khudra.png"/>
+    </div>
+       
+      <ion-item padding-right class="f1">
+        <ion-input type="text" placeholder="Username" ></ion-input>
+       </ion-item>
+    
+       <ion-item padding-right class="f2">
+        <ion-input type="password" placeholder="Password" ></ion-input>
+       </ion-item>
+       
+       <div padding>
+          <button ion-button color="primary" block>Sign In</button>
+          <a id="fyp" (click)="this.showmodal()">Forgot Your Password?</a>
+       </div>
+
+       <div padding>
+          <button ion-button color="primary" block (click)="this.showsignup()">Sign Up</button>
+          <a id="fyp">Planning for Retail Business? </a>
+       </div>
+
+</ion-content>

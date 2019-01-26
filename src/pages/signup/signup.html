@@ -7,41 +7,44 @@
 
 
 <ion-content padding>
+    
+   <form [formGroup]="supform">
       <ion-item padding-right>
-        <ion-input type="text" placeholder="Retail Name"></ion-input>
+        <ion-input type="text" placeholder="Retail Name" formControlName="retailname"></ion-input>
        </ion-item>
 
        <ion-item padding-right>
-          <ion-input type="text" placeholder="Retail Address" ></ion-input>
+          <ion-input type="text" placeholder="Retail Address" formControlName="retailaddress"></ion-input>
        </ion-item>
 
        <ion-item padding-right>
-          <ion-input type="text" placeholder="Retailer Name" ></ion-input>
+          <ion-input type="text" placeholder="Retailer Name" formControlName="retailername"></ion-input>
        </ion-item>
 
        <ion-item padding-right>
-          <ion-input type="number" placeholder="Contact Number" ></ion-input>
+          <ion-input type="number" placeholder="Contact Number" formControlName="contactnum" ></ion-input>
        </ion-item>
        
        <ion-item padding-right>
-          <ion-input type="email" placeholder="Email Address" ></ion-input>
+          <ion-input type="email" placeholder="Email Address(Optional)" formControlName="email" ></ion-input>
        </ion-item>
 
        <ion-item padding-right>
-          <ion-input type="text" placeholder="Username" ></ion-input>
+          <ion-input type="text" placeholder="Username" formControlName="username" ></ion-input>
        </ion-item>
 
        <ion-item padding-right>
-        <ion-input type="password" placeholder="Password" ></ion-input>
+        <ion-input type="password" placeholder="Password" formControlName="password"></ion-input>
        </ion-item>
 
        <ion-item padding-right class="pics">
-          <ion-input  type="file" accept="image/*" id="pic"></ion-input>
+          <ion-input  type="file" accept="image/*" id="pic" formControlName="pic"></ion-input>
        </ion-item>
 
        <ion-item padding-right class="cits">
-          <ion-input  type="file" accept="image/*" id="cit"></ion-input>
+          <ion-input  type="file" accept="image/*" id="cit" formControlName="cit"></ion-input>
        </ion-item>
+    </form>
 
        <div padding>
           <button id="up" (click)="this.clickit(0)" ion-button color="secondary" block>Upload Retailer Photo</button>
@@ -49,7 +52,7 @@
        </div>
        
        <div padding>
-          <button ion-button color="primary" block>Sign Up</button>
+          <button ion-button color="primary" (click)="this.signup()" block>Sign Up</button>
        </div>
 
 </ion-content>

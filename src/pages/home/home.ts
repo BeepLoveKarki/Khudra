@@ -1,15 +1,19 @@
 import { Component } from '@angular/core';
 import { NavController,ModalController,AlertController } from 'ionic-angular';
 import {SignupPage} from '../signup/signup';
+import {Validators,FormBuilder} from '@angular/forms';
 
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
 })
 export class HomePage {
-
-  constructor(public navCtrl: NavController,public modalCtrl:ModalController,public alertCtrl:AlertController) {
-
+  sinform:any;
+  constructor(public navCtrl: NavController,public formBuilder:FormBuilder,public modalCtrl:ModalController,public alertCtrl:AlertController) {
+      this.sinform= formBuilder.group({
+          username: ['',Validators.required],
+          password: ['',Validators.required]
+      });
   }
 
   showmodal(){
@@ -42,6 +46,23 @@ export class HomePage {
 
   showsignup(){
     let modal=this.modalCtrl.create(SignupPage);
+    modal.present();
+  }
+
+  signin(){
+    if(this.sinform.valid){
+
+    }else{
+      this.makealert("Either of the inputs in empty");
+    }
+  }
+
+  makealert(a:string){
+    let modal=this.alertCtrl.create({
+      title:'',
+      message:a,
+      buttons:['OK']
+    });
     modal.present();
   }
 

@@ -10,31 +10,31 @@
     
    <form [formGroup]="supform">
       <ion-item padding-right>
-        <ion-input type="text" placeholder="Retail Name" formControlName="retailname"></ion-input>
+        <ion-input type="text" placeholder="Retail Name" [(ngModel)]="retailname" formControlName="retailname"></ion-input>
        </ion-item>
 
        <ion-item padding-right>
-          <ion-input type="text" placeholder="Retail Address" formControlName="retailaddress"></ion-input>
+          <ion-input type="text" placeholder="Retail Address" [(ngModel)]="address" formControlName="retailaddress"></ion-input>
        </ion-item>
 
        <ion-item padding-right>
-          <ion-input type="text" placeholder="Retailer Name" formControlName="retailername"></ion-input>
+          <ion-input type="text" placeholder="Retailer Name" [(ngModel)]="retailername" formControlName="retailername"></ion-input>
        </ion-item>
 
        <ion-item padding-right>
-          <ion-input type="number" placeholder="Contact Number" formControlName="contactnum" ></ion-input>
+          <ion-input type="number" placeholder="Contact Number" [(ngModel)]="number" formControlName="contactnum" ></ion-input>
        </ion-item>
        
        <ion-item padding-right>
-          <ion-input type="email" placeholder="Email Address(Optional)" formControlName="email" ></ion-input>
+          <ion-input type="email" placeholder="Email Address(Optional)" [(ngModel)]="email" formControlName="email" ></ion-input>
        </ion-item>
 
        <ion-item padding-right>
-          <ion-input type="text" placeholder="Username" formControlName="username" ></ion-input>
+          <ion-input type="text" placeholder="Username" [(ngModel)]="username" formControlName="username" ></ion-input>
        </ion-item>
 
        <ion-item padding-right>
-        <ion-input type="password" placeholder="Password" formControlName="password"></ion-input>
+        <ion-input type="password" placeholder="Password" [(ngModel)]="password" formControlName="password"></ion-input>
        </ion-item>
 
        <ion-item padding-right class="pics">
@@ -44,11 +44,11 @@
        <ion-item padding-right class="cits">
           <ion-input  type="file" accept="image/*" id="cit" formControlName="cit"></ion-input>
        </ion-item>
-    </form>
+      </form>
 
        <div padding>
           <button id="up" (click)="this.clickit(0)" ion-button color="secondary" block>Upload Retailer Photo</button>
-          <button id="uc" (click)="this.clickit(1)" ion-button color="danger" block>Upload Retailer Citizenship</button>
+          <button id="uc" (click)="this.clickit(1)" ion-button color="danger" block>Upload Retailer Citizenship (One Side)</button>
        </div>
        
        <div padding>

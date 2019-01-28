@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-header>
+    <ion-navbar>
+      <ion-buttons left>
+        <button icon-only menuToggle class="icon">
+            <ion-icon name="menu"></ion-icon>
+        </button>
+      </ion-buttons>
+      <ion-title id="heads">Cart</ion-title>
+    </ion-navbar>
+  </ion-header>
+
+<ion-content padding>
+    <div *ngIf="yo;else show">
+        <p text-center>No goods added to cart</p>
+    </div>
+    <ng-template #show>
+        <div *ngFor="let data of datas">
+          <!--ion-card>
+            <ion-card-header>
+              {{data["name"]}}
+            </ion-card-header>
+            <ion-card-content>
+            <span>{{data["type"]}}-{{data["quantity"]}}</span>
+            <span>NRs. {{data["cost"]}}</span>
+            </ion-card-content>
+          </ion-card-->
+        </div>
+    </ng-template>
+</ion-content>

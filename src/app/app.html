@@ -1,1 +1,33 @@
-<ion-nav [root]="rootPage"></ion-nav>
+<ion-menu [content]="content">
+ <ion-header>
+    <ion-toolbar>
+        <ion-title>Khudra</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content>
+      <ion-list>
+        <button ion-item menuClose (click)="this.menus(1)">
+            Goods
+        </button>
+        <button ion-item menuClose (click)="this.menus(2)">
+            Profile
+        </button>
+        <button ion-item menuClose (click)="this.menus(3)">
+            Cart
+        </button>
+        <button ion-item menuClose (click)="this.menus(4)">
+            Purchases
+        </button>
+        <button ion-item menuClose (click)="this.menus(5)">
+            Credits
+        </button>
+        <button ion-item menuClose (click)="this.menus(6)">
+            Log Out
+        </button>
+      </ion-list>
+  </ion-content>
+</ion-menu>
+
+
+
+<ion-nav [root]="rootPage" #content></ion-nav>

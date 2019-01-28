@@ -25674,6 +25674,18 @@ ion-navbar.toolbar {
   min-height: calc(46px + env(safe-area-inset-bottom));
 }
 
+#heads {
+  margin-left: 80px;
+}
+
+#heads {
+  margin-left: 80px;
+}
+
+.icon {
+  background-color: transparent;
+}
+
 .f1 {
   margin-top: 10px;
 }

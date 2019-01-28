@@ -34,6 +34,7 @@ export class SignupPage {
       username: ['',Validators.required],
       password: ['',Validators.required]
     });
+     
   }
 
   ionViewWillEnter(){
@@ -54,8 +55,23 @@ export class SignupPage {
     }
   }
 
-  signup(){
+  beforesignup(){
     if(this.supform.valid){
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition((position)=>{
+         this.signup(position.coords.latitude,position.coords.longitude);
+      }/*,(error)=>{
+         alert(error.toString());
+      }*/);
+    } else {
+      this.makealert("Please use this app from mobile supporting GPS system.");
+    }
+   }else{
+      this.makealert("Enter of the form input is invalid or empty. Please do upload required documents too in image format.");
+   }
+  }
+
+  signup(latitude:Number,longitude:Number){
       let formData = new FormData();
       formData.append('retailname',this.retailname);
       formData.append('address',this.address);
@@ -64,6 +80,8 @@ export class SignupPage {
       formData.append('email',this.email);
       formData.append('username',this.username);
       formData.append('password',this.password);
+      formData.append('latitude',latitude.toString());
+      formData.append('longitude',longitude.toString());
       formData.append('pic',this.pic);
       formData.append('cit',this.cit);
       this.http.post("http://192.168.0.108:8080/signup",formData).subscribe((res)=>{
@@ -93,9 +111,6 @@ export class SignupPage {
       },(err)=>{
         this.makealert("Error in server. Try again later");
       });
-    }else{
-      this.makealert("Enter of the form input is invalid or empty. Please do upload required documents too in image format.");
-    }
   }
 
   makealert(a:string){

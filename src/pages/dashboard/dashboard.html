@@ -1,13 +1,39 @@
-
 <ion-header>
-
   <ion-navbar>
-    <ion-title>Khudra</ion-title>
+    <ion-buttons left>
+      <button icon-only menuToggle class="icon">
+          <ion-icon name="menu"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title id="heads">Goods</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-
+  <div *ngIf="yo;else show">
+    <p text-center>No goods data available at moment</p>
+  </div>
+  <ng-template #show>
+  <div *ngFor="let data of datas">
+    <ion-list no-lines>
+      <ion-list-header>
+       {{data["name"]}}
+      </ion-list-header>
+      <ion-grid>
+      <div *ngFor="let val of data['types'];index as i">
+          <ion-row>
+            <ion-col col-10>
+                <ion-item>{{val}} - Rs.{{data["costs"][i]}}/{{data["units"][i]}}</ion-item>
+            </ion-col>
+            <ion-col col-2>
+               <button color="primary" (click)="this.beforeaddtocart(data['name'],val,data['costs'][i])" ion-button outline><ion-icon name="add"></ion-icon></button>
+            </ion-col>
+          </ion-row>
+      </div>
+      </ion-grid>
+    </ion-list>
+  </div>
+  </ng-template>
 </ion-content>

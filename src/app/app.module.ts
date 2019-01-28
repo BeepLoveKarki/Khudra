@@ -3,20 +3,22 @@ import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
-import { HttpClientModule } from '@angular/common/http'; 
+import { HttpClientModule } from '@angular/common/http';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { SignupPage } from '../pages/signup/signup';
 import { IonicStorageModule } from '@ionic/storage';
 import { DashboardPage } from '../pages/dashboard/dashboard';
+import { CartPage } from '../pages/cart/cart';
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
     SignupPage,
-    DashboardPage
+    DashboardPage,
+    CartPage
   ],
   imports: [
     BrowserModule,
@@ -31,7 +33,8 @@ import { DashboardPage } from '../pages/dashboard/dashboard';
     MyApp,
     HomePage,
     SignupPage,
-    DashboardPage
+    DashboardPage,
+    CartPage
   ],
   providers: [
     StatusBar,

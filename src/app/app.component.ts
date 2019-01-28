@@ -1,5 +1,5 @@
-import { Component,ViewChild } from '@angular/core';
-import { Platform,Nav } from 'ionic-angular';
+import { Component } from '@angular/core';
+import { Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import {Storage} from '@ionic/storage';
@@ -7,12 +7,15 @@ import {Storage} from '@ionic/storage';
 
 import { HomePage } from '../pages/home/home';
 import { CartPage } from '../pages/cart/cart';
+import { DashboardPage } from '../pages/dashboard/dashboard';
+import { PurchasePage } from '../pages/purchase/purchase';
+import { CreditPage } from '../pages/credit/credit';
+import { ProfilePage } from '../pages/profile/profile';
 @Component({
   templateUrl: 'app.html'
 })
 
 export class MyApp {
-  @ViewChild(Nav) nav: Nav;
   rootPage:any = HomePage;
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, private storage: Storage) {
@@ -27,24 +30,28 @@ export class MyApp {
   menus(a:Number){
     switch(a){
       case 1:
+      this.rootPage=DashboardPage;
       break;
 
       case 2:
+      this.rootPage=ProfilePage;
       break;
 
       case 3:
-      this.nav.setRoot(CartPage);
+      this.rootPage=CartPage;
       break;
 
       case 4:
+      this.rootPage=PurchasePage;
       break;
 
       case 5:
+      this.rootPage=CreditPage;
       break;
 
       case 6:
        this.storage.clear();
-       this.nav.setRoot(HomePage);
+       this.rootPage=HomePage;
       break;
     }
   }

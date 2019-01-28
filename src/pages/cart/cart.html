@@ -1,5 +1,4 @@
 <ion-header>
-  <ion-header>
     <ion-navbar>
       <ion-buttons left>
         <button icon-only menuToggle class="icon">
@@ -11,20 +10,33 @@
   </ion-header>
 
 <ion-content padding>
-    <div *ngIf="yo;else show">
+    <div *ngIf="yo;else showit">
         <p text-center>No goods added to cart</p>
     </div>
-    <ng-template #show>
+    <ng-template #showit>
         <div *ngFor="let data of datas">
-          <!--ion-card>
+          <ion-card>
             <ion-card-header>
               {{data["name"]}}
             </ion-card-header>
-            <ion-card-content>
-            <span>{{data["type"]}}-{{data["quantity"]}}</span>
-            <span>NRs. {{data["cost"]}}</span>
-            </ion-card-content>
-          </ion-card-->
+        <ion-card-content>
+          <ion-grid>
+            <ion-row>
+              <ion-col col-9>
+                  <span>{{data["type"]}} - {{data["quantity"]}}</span><br/>
+                  <span>NRs. {{data["cost"]}}</span><br/>
+                  <span>{{data["date1"]}}</span><br/>
+                  <span>{{data["time"]}}</span>
+              </ion-col>
+              <ion-col col-3>
+                  <button color="primary" (click)="this.purchasebefore(data['name'],data['type'],data['quantity'],data['cost'],data['date'])" ion-button outline><ion-icon name="cart"></ion-icon></button><br/>
+                  <button color="danger" (click)="this.removecart(data['date'])" ion-button outline><ion-icon name="close"></ion-icon></button>
+              </ion-col>
+            </ion-row>
+          </ion-grid>  
+        </ion-card-content>
+          
+          </ion-card>
         </div>
     </ng-template>
 </ion-content>

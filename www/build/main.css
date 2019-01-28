@@ -25682,6 +25682,10 @@ ion-navbar.toolbar {
   margin-left: 80px;
 }
 
+#heads {
+  margin-left: 80px;
+}
+
 .icon {
   background-color: transparent;
 }
@@ -25703,6 +25707,14 @@ ion-navbar.toolbar {
   text-align: center;
   display: block;
   padding-top: 10px;
+}
+
+#heads {
+  margin-left: 80px;
+}
+
+#heads {
+  margin-left: 80px;
 }
 
 .pics, .cits {

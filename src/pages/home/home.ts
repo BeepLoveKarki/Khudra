@@ -22,7 +22,6 @@ export class HomePage {
   }
 
   ionViewWillEnter(){
-   //this.storage.clear();
    this.storage.get("user").then((val)=>{
     if(val){
       this.navCtrl.setRoot(DashboardPage);

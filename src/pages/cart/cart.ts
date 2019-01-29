@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, ToastController, AlertController } from 'ionic-angular';
+import { NavController, NavParams, ToastController, AlertController, LoadingController } from 'ionic-angular';
 import {HttpClient} from '@angular/common/http';
 import {Storage} from '@ionic/storage';
 
@@ -12,7 +12,7 @@ export class CartPage {
   datas:any;
   yo:boolean;
   total:number;
-  constructor(private http:HttpClient, private storage: Storage, public toastCtrl:ToastController, public alrtCtrl: AlertController, public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public loadingCtrl: LoadingController, private http:HttpClient, private storage: Storage, public toastCtrl:ToastController, public alrtCtrl: AlertController, public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
@@ -94,7 +94,11 @@ export class CartPage {
   }
 
   purchase(name:string,type:string,quantity:string,cost:number,date:string,credits:boolean){
-   this.storage.get("user").then((value)=>{
+    let loading = this.loadingCtrl.create({
+      content: 'Please wait...'
+    });
+    loading.present();
+    this.storage.get("user").then((value)=>{
     
     this.http.post("http://192.168.0.108:8080/purchase",{
       username:value,
@@ -105,12 +109,14 @@ export class CartPage {
       date,
       credits
     }).subscribe((res)=>{
+        loading.dismiss();
         if(res["status"]=="OK"){
           let date=new Date(res["date"]);
           let d=date.getFullYear()+"/"+(date.getMonth()+1)+"/"+date.getDate();
           let g=date.getHours()>9 ? date.getHours():"0"+date.getHours();
           let h=date.getMinutes()>9 ? date.getMinutes():"0"+date.getMinutes();
           this.makealert("Your goods have been successfully purchased. The estimated time of delivery is "+g+":"+h+" on date "+d);
+        
         }
     });
   
@@ -118,11 +124,16 @@ export class CartPage {
   }
   
   removecart(date:string){
+    let loading = this.loadingCtrl.create({
+      content: 'Please wait...'
+    });
+    loading.present();
     this.storage.get("user").then((value)=>{
       this.http.post("http://192.168.0.108:8080/removecart",{
         username:value,
         date:date
       }).subscribe((res)=>{
+        loading.dismiss();
         if(res["status"]=="OK"){
            this.toastit("The item has been removed from cart"); 
         }

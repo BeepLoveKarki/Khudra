@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, AlertController, NavParams } from 'ionic-angular';
+import { NavController, AlertController, NavParams, LoadingController } from 'ionic-angular';
 import {Validators,FormBuilder} from '@angular/forms';
 import * as $ from "jquery";
 import {HttpClient} from '@angular/common/http';
@@ -21,7 +21,7 @@ export class SignupPage {
   password:string;
   pic:any;
   cit:any;
-  constructor(public navCtrl: NavController, private http:HttpClient, public navParams: NavParams,public alertCtrl:AlertController,public formBuilder:FormBuilder) {
+  constructor(public loadingCtrl: LoadingController, public navCtrl: NavController, private http:HttpClient, public navParams: NavParams,public alertCtrl:AlertController,public formBuilder:FormBuilder) {
     this.supform= formBuilder.group({
       retailname: ['',Validators.required],
       retailaddress: ['',Validators.required],
@@ -55,22 +55,26 @@ export class SignupPage {
   }
 
   beforesignup(){
+    const loader = this.loadingCtrl.create({
+      content: "Please wait...",
+    });
+    loader.present();
     if(this.supform.valid){
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((position)=>{
-         this.signup(position.coords.latitude,position.coords.longitude);
-      }/*,(error)=>{
-         alert(error.toString());
-      }*/);
+         this.signup(position.coords.latitude,position.coords.longitude,loader);
+      });
     } else {
+      loader.dismiss();
       this.makealert("Please use this app from mobile supporting GPS system.");
     }
    }else{
+      loader.dismiss();
       this.makealert("Enter of the form input is invalid or empty. Please do upload required documents too in image format.");
    }
   }
 
-  signup(latitude:Number,longitude:Number){
+  signup(latitude:Number,longitude:Number,loader:any){
       let formData = new FormData();
       formData.append('retailname',this.retailname);
       formData.append('address',this.address);
@@ -84,6 +88,7 @@ export class SignupPage {
       formData.append('pic',this.pic);
       formData.append('cit',this.cit);
       this.http.post("http://192.168.0.108:8080/signup",formData).subscribe((res)=>{
+        loader.dismiss(); 
         if(res["status"]=="error"){
           this.makealert("Error in server. Try again later");
         }else if(res["status"]=="uexist"){

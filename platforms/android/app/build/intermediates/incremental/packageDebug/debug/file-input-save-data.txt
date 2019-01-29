@@ -1,5 +1,5 @@
 #Internal package file, do not edit.
-#Tue Jan 29 20:06:14 NPT 2019
+#Tue Jan 29 20:58:24 NPT 2019
 5.base=C\:\\Users\\User\\Documents\\khudra\\platforms\\android\\app\\build\\intermediates\\assets\\debug
 42.base=C\:\\Users\\User\\Documents\\khudra\\platforms\\android\\app\\build\\intermediates\\res\\debug\\resources-debug.ap_
 32.set=ANDROID_RESOURCE

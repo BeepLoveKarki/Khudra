@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, AlertController, ToastController } from 'ionic-angular';
+import { NavController, NavParams, AlertController, ToastController, LoadingController } from 'ionic-angular';
 import {HttpClient} from '@angular/common/http';
 import {Storage} from '@ionic/storage';
 
@@ -11,7 +11,7 @@ export class DashboardPage {
   datas:Object;
   func:any;
   yo:boolean
-  constructor(public toastCtrl:ToastController, public alrtCtrl: AlertController, private storage: Storage, public navCtrl: NavController, public navParams: NavParams, private http:HttpClient) {
+  constructor(public loadingCtrl: LoadingController, public toastCtrl:ToastController, public alrtCtrl: AlertController, private storage: Storage, public navCtrl: NavController, public navParams: NavParams, private http:HttpClient) {
   }
 
   ionViewDidLoad() {
@@ -63,6 +63,10 @@ export class DashboardPage {
   }
   
   addtocart(unit:string,category:string,type:string,price:number,quantity:number){
+    let loading = this.loadingCtrl.create({
+      content: 'Please wait...'
+    });
+    loading.present();
     this.storage.get("user").then((val)=>{
       this.http.post("http://192.168.0.108:8080/addtocart",{
         username:val,
@@ -72,6 +76,7 @@ export class DashboardPage {
         tprice:quantity*price
       }).subscribe((res)=>{
            if(res["status"]=="OK"){
+             loading.dismiss();
              this.toastit("The item has been successfully added to cart");
            }
        });

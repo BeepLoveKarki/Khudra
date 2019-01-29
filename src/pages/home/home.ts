@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController,ModalController,AlertController } from 'ionic-angular';
+import { NavController,ModalController,AlertController, LoadingController } from 'ionic-angular';
 import {SignupPage} from '../signup/signup';
 import {DashboardPage} from '../dashboard/dashboard';
 import {Validators,FormBuilder} from '@angular/forms';
@@ -14,7 +14,7 @@ export class HomePage {
   sinform:any;
   username:string;
   password:string;
-  constructor(public navCtrl: NavController, private storage:Storage, private http:HttpClient, public formBuilder:FormBuilder,public modalCtrl:ModalController,public alertCtrl:AlertController) {
+  constructor(public loadingCtrl: LoadingController, public navCtrl: NavController, private storage:Storage, private http:HttpClient, public formBuilder:FormBuilder,public modalCtrl:ModalController,public alertCtrl:AlertController) {
       this.sinform= formBuilder.group({
           username: ['',Validators.required],
           password: ['',Validators.required]
@@ -63,11 +63,16 @@ export class HomePage {
   }
 
   signin(){
+    let loading = this.loadingCtrl.create({
+      content: 'Please wait...'
+    });
+    loading.present();
     if(this.sinform.valid){
       this.http.post("http://192.168.0.108:8080/login",{
         username:this.username,
         password:this.password
       }).subscribe((res)=>{
+        loading.dismiss();
         if(res["status"]=="no"){
           this.makealert("No any account with entered credentials found.");
         }else{
@@ -79,6 +84,7 @@ export class HomePage {
         this.makealert("Error in server. Try again later");
       });
     }else{
+      loading.dismiss();
       this.makealert("Either of the inputs in empty");
     }
   }

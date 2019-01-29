@@ -17,7 +17,7 @@
         <ion-item>Retailer Name: {{ datas["retailername"] }}</ion-item>
         <ion-item>Retail Name: {{ datas["retailname"] }}</ion-item>
         <ion-item>Retail Address: {{ datas["address"] }}</ion-item>
-        <ion-item>Email: {{ datas["email"] }}</ion-item>
+        <ion-item *ngIf="datas['email']!=null">Email: {{ datas["email"] }}</ion-item>
         <ion-item>Contact No.: {{ datas["number"] }}</ion-item>
         <ion-item>Username: {{ datas["username"] }}</ion-item>
       </ion-list>

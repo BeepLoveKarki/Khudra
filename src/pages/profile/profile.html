@@ -10,5 +10,29 @@
   </ion-header>
 
 <ion-content padding>
-
+    <div padding>
+        <img id="mimg" src="{{image}}"/>
+      </div>
+      <ion-list *ngIf="datas!=null">
+        <ion-item>Retailer Name: {{ datas["retailername"] }}</ion-item>
+        <ion-item>Retail Name: {{ datas["retailname"] }}</ion-item>
+        <ion-item>Retail Address: {{ datas["address"] }}</ion-item>
+        <ion-item>Email: {{ datas["email"] }}</ion-item>
+        <ion-item>Contact No.: {{ datas["number"] }}</ion-item>
+        <ion-item>Username: {{ datas["username"] }}</ion-item>
+      </ion-list>
+      <ion-grid>
+        <ion-row>
+          <ion-col col-6>
+            <button ion-button color="primary" block (click)="this.changeu()" block>Change Username</button>
+          </ion-col>
+          <ion-col col-6>
+            <button ion-button color="primary" block (click)="this.changep()" block>Change Password</button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      <div padding>
+        <p text-center>To change other information, please do contact admin</p>
+      </div>
+      
 </ion-content>

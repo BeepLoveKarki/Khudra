@@ -12,6 +12,7 @@ export class CartPage {
   func:any;
   datas:any;
   yo:boolean;
+  total:number;
   constructor(private http:HttpClient, private storage: Storage, public toastCtrl:ToastController, public alrtCtrl: AlertController, public navCtrl: NavController, public navParams: NavParams) {
   }
 
@@ -29,6 +30,7 @@ export class CartPage {
   }
 
   getit(){
+   this.total=0;
    this.storage.get("user").then((val)=>{
     this.http.post("http://192.168.0.108:8080/getcarts",{username:val}).subscribe((res)=>{
      this.datas=res["data"];
@@ -42,6 +44,8 @@ export class CartPage {
            let h=f.getMinutes()>9 ? f.getMinutes():"0"+f.getMinutes();
            this.datas[i]["date1"]=f.getFullYear()+"/"+(f.getMonth()+1)+"/"+f.getDate();
            this.datas[i]["time"]=g+":"+h;
+           this.total+=parseFloat(this.datas[i]["cost"]);
+
         }
       }
     });

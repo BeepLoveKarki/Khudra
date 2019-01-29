@@ -1,11 +1,10 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, AlertController, NavParams } from 'ionic-angular';
+import { NavController, AlertController, NavParams } from 'ionic-angular';
 import {Validators,FormBuilder} from '@angular/forms';
 import * as $ from "jquery";
 import {HttpClient} from '@angular/common/http';
 import {HomePage} from '../home/home';
  
-@IonicPage()
 @Component({
   selector: 'page-signup',
   templateUrl: 'signup.html',

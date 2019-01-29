@@ -11,4 +11,21 @@
 
 <ion-content padding>
 
+        <ion-card>
+            <ion-card-header>Credits</ion-card-header>
+            <ion-card-content>
+              <span>NRs. {{credits}}</span><br/>
+              <span>NRs. {{interest}}</span><br/>
+              <span>NRs. {{total}}</span><br/>
+
+              <div *ngIf="credits==0;else but">
+                  <p>You have no pending credits for payment</p>
+                </div>
+                <ng-template #but>
+                    <button color="primary" (click)="this.payit()" id="pc" ion-button small>Pay Credit</button>
+                </ng-template>
+
+            </ion-card-content>
+        </ion-card>
+
 </ion-content>

@@ -33,13 +33,13 @@ export class DashboardPage {
      });
   }
 
-  ionViewWillUnload(){
+  ionViewWillLeave(){
     if(this.func){
       clearInterval(this.func);
     }
   }
 
-  beforeaddtocart(category:string,type:string,price:number){
+  beforeaddtocart(unit:string, category:string,type:string,price:number){
      let quantity=this.alrtCtrl.create({
        title:"Enter Product Quantity",
        message:"",
@@ -55,7 +55,7 @@ export class DashboardPage {
         {
           text:'Done',
           handler:data=>{
-             this.addtocart(category,type,price,parseFloat(data["quantity"]));
+             this.addtocart(unit,category,type,price,parseFloat(data["quantity"]));
           }
         }
       ]
@@ -63,13 +63,13 @@ export class DashboardPage {
      quantity.present();
   }
   
-  addtocart(category:string,type:string,price:number,quantity:number){
+  addtocart(unit:string,category:string,type:string,price:number,quantity:number){
     this.storage.get("user").then((val)=>{
       this.http.post("http://192.168.0.108:8080/addtocart",{
         username:val,
         category:category,
         type:type,
-        quantity:quantity,
+        quantity:quantity+" "+unit,
         tprice:quantity*price
       }).subscribe((res)=>{
            if(res["status"]=="OK"){

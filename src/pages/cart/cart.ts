@@ -22,7 +22,7 @@ export class CartPage {
     },5000);
   }
 
-  ionViewWillUnload(){
+  ionViewWillLeave(){
     if(this.func){
       clearInterval(this.func);
     }
@@ -38,8 +38,8 @@ export class CartPage {
         this.yo=false;
         for(let i=0;i<this.datas.length;i++){
            let f=new Date(this.datas[i]["date"]);
-           let g=f.getHours()>10 ? f.getHours():"0"+f.getHours();
-           let h=f.getMinutes()>10 ? f.getMinutes():"0"+f.getMinutes();
+           let g=f.getHours()>9 ? f.getHours():"0"+f.getHours();
+           let h=f.getMinutes()>9 ? f.getMinutes():"0"+f.getMinutes();
            this.datas[i]["date1"]=f.getFullYear()+"/"+(f.getMonth()+1)+"/"+f.getDate();
            this.datas[i]["time"]=g+":"+h;
         }
@@ -48,7 +48,7 @@ export class CartPage {
     });
   }
 
-  purchasebefore(name:string,type:string,quantity:number,cost:number,date:string){
+  purchasebefore(name:string,type:string,quantity:string,cost:number,date:string){
     let credits=this.alrtCtrl.create({
       title:"Payment confirmation",
       message:"Would you like to pay for the goods or purchase over credit?",
@@ -61,7 +61,7 @@ export class CartPage {
 
           text: 'Via Payment',
           handler:()=>{
-           this.purchase(name,type,quantity,cost,date,false);
+           this.payby(name,type,quantity,cost,date,false);
           }
 
          }]
@@ -69,7 +69,28 @@ export class CartPage {
     credits.present();
   }
 
-  purchase(name:string,type:string,quantity:number,cost:number,date:string,credits:boolean){
+  payby(name:string,type:string,quantity:string,cost:number,date:string,credits:boolean){
+    let pays=this.alrtCtrl.create({
+      title:"Payment way",
+      message:"Would you like to pay as cash on delivery or digitally?",
+      buttons:[{
+          text: 'On delivery',
+          handler:()=>{
+            this.purchase(name,type,quantity,cost,date,false);
+          }
+        },{
+
+          text: 'Digitally',
+          handler:()=>{
+           this.purchase(name,type,quantity,cost,date,false);
+          }
+
+         }]
+    });
+    pays.present();
+  }
+
+  purchase(name:string,type:string,quantity:string,cost:number,date:string,credits:boolean){
    this.storage.get("user").then((value)=>{
     
     this.http.post("http://192.168.0.108:8080/purchase",{
@@ -83,9 +104,9 @@ export class CartPage {
     }).subscribe((res)=>{
         if(res["status"]=="OK"){
           let date=new Date(res["date"]);
-          let d=date.getFullYear()+"/"+(date.getMonth()+1)+date.getDate();
-          let g=date.getHours()>10 ? date.getHours():"0"+date.getHours();
-          let h=date.getMinutes()>10 ? date.getMinutes():"0"+date.getMinutes();
+          let d=date.getFullYear()+"/"+(date.getMonth()+1)+"/"+date.getDate();
+          let g=date.getHours()>9 ? date.getHours():"0"+date.getHours();
+          let h=date.getMinutes()>9 ? date.getMinutes():"0"+date.getMinutes();
           this.makealert("Your goods have been successfully purchased. The estimated time of delivery is "+g+":"+h+" on date "+d);
         }
     });

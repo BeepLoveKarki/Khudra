@@ -25682,6 +25682,11 @@ ion-navbar.toolbar {
   margin-left: 80px;
 }
 
+#pc {
+  margin-left: -5px !important;
+  margin-top: 10px;
+}
+
 #heads {
   margin-left: 80px;
 }

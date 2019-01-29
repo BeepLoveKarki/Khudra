@@ -28,7 +28,7 @@
                 <ion-item>{{val}} - Rs.{{data["costs"][i]}}/{{data["units"][i]}}</ion-item>
             </ion-col>
             <ion-col col-2>
-               <button color="primary" (click)="this.beforeaddtocart(data['name'],val,data['costs'][i])" ion-button outline><ion-icon name="add"></ion-icon></button>
+               <button color="primary" (click)="this.beforeaddtocart(data['units'][i],data['name'],val,data['costs'][i])" ion-button outline><ion-icon name="add"></ion-icon></button>
             </ion-col>
           </ion-row>
       </div>

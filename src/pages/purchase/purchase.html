@@ -11,5 +11,31 @@
 
 
 <ion-content padding>
+    <div *ngIf="yo;else showit">
+        <p text-center>No goods yet purchased</p>
+    </div>
+    <ng-template #showit>
+        <div *ngFor="let data of datas">
+            <ion-card>
+              <ion-card-header>
+                {{data["name"]}}
+              </ion-card-header>
+              <ion-card-content>
+               
+                      <span>Goods: {{data["type"]}}-{{data["quantity"]}}</span><br/>
+                      <span>Price: NRs. {{data["cost"]}}</span><br/>
+                      <span>Purchase: {{data["date1"]}} {{data["time1"]}}</span><br/>
+                      <span>Delivery: {{data["date2"]}} {{data["time2"]}}</span><br/>
+                      <span *ngIf='data["delivered"]; else no'>
+                          Status: <ion-icon name="checked"></ion-icon> Delivered
+                      </span>
+                      <ng-template #no>
+                          Status: <ion-icon name="bus"></ion-icon> On Its Way
+                      </ng-template> 
+
+              </ion-card-content>
+            </ion-card>
+        </div>
+    </ng-template>
 
 </ion-content>

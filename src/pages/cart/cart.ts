@@ -31,7 +31,7 @@ export class CartPage {
   getit(){
    this.total=0;
    this.storage.get("user").then((val)=>{
-    this.http.post("http://192.168.0.108:8080/getcarts",{username:val}).subscribe((res)=>{
+    this.http.post("http://10.3.141.155:8080/getcarts",{username:val}).subscribe((res)=>{
      this.datas=res["data"];
      if(this.datas.length==0){
         this.yo=true;
@@ -100,7 +100,7 @@ export class CartPage {
     loading.present();
     this.storage.get("user").then((value)=>{
     
-    this.http.post("http://192.168.0.108:8080/purchase",{
+    this.http.post("http://10.3.141.155:8080/purchase",{
       username:value,
       name,
       type,
@@ -129,7 +129,7 @@ export class CartPage {
     });
     loading.present();
     this.storage.get("user").then((value)=>{
-      this.http.post("http://192.168.0.108:8080/removecart",{
+      this.http.post("http://10.3.141.155:8080/removecart",{
         username:value,
         date:date
       }).subscribe((res)=>{

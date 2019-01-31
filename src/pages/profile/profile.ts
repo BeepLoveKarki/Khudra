@@ -73,7 +73,7 @@ export class ProfilePage {
 
   loginones(data:string,a:number){
     this.storage.get("user").then((val)=>{
-     this.http.post("http://192.168.0.108:8080/loginchange",{
+     this.http.post("http://10.3.141.155:8080/loginchange",{
        username:val,
        data,
        a
@@ -91,9 +91,9 @@ export class ProfilePage {
 
   getit(){
     this.storage.get("user").then((val)=>{
-      this.http.post("http://192.168.0.108:8080/getuser",{username:val}).subscribe((res)=>{
+      this.http.post("http://10.3.141.155:8080/getuser",{username:val}).subscribe((res)=>{
          this.datas=res["data"];
-         this.image="http://192.168.0.108:8080/static/"+val+"_photo.jpg";
+         this.image="http://10.3.141.155:8080/static/"+val+"_photo.jpg";
       })
    });
   }

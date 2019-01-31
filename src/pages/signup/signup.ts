@@ -87,7 +87,7 @@ export class SignupPage {
       formData.append('longitude',longitude.toString());
       formData.append('pic',this.pic);
       formData.append('cit',this.cit);
-      this.http.post("http://192.168.0.108:8080/signup",formData).subscribe((res)=>{
+      this.http.post("http://10.3.141.155:8080/signup",formData).subscribe((res)=>{
         loader.dismiss(); 
         if(res["status"]=="error"){
           this.makealert("Error in server. Try again later");

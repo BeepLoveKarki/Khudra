@@ -59,7 +59,7 @@ export class CreditPage {
 
   getit(){
     this.storage.get("user").then((val)=>{
-      this.http.post("http://192.168.0.108:8080/getcredits",{username:val}).subscribe((res)=>{
+      this.http.post("http://10.3.141.155:8080/getcredits",{username:val}).subscribe((res)=>{
        this.credits=parseFloat(res["credits"]);
        this.interest=parseFloat(res["interest"]);
        this.total=this.credits+this.interest;

@@ -29,7 +29,7 @@ export class PurchasePage {
 
   getit(){
     this.storage.get("user").then((val)=>{
-      this.http.post("http://192.168.0.108:8080/getpurchases",{username:val}).subscribe((res)=>{
+      this.http.post("http://10.3.141.155:8080/getpurchases",{username:val}).subscribe((res)=>{
        this.datas=res["data"];
        if(this.datas.length==0){
           this.yo=true;

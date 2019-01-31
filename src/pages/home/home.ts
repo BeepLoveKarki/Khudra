@@ -68,7 +68,7 @@ export class HomePage {
     });
     loading.present();
     if(this.sinform.valid){
-      this.http.post("http://192.168.0.108:8080/login",{
+      this.http.post("http://10.3.141.155:8080/login",{
         username:this.username,
         password:this.password
       }).subscribe((res)=>{
@@ -81,6 +81,7 @@ export class HomePage {
           });
         }
       },(err)=>{
+		loading.dismiss();
         this.makealert("Error in server. Try again later");
       });
     }else{

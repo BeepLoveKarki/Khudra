@@ -22,7 +22,7 @@ export class DashboardPage {
   }
 
   getit(){
-    this.http.get("http://192.168.0.108:8080/getcategories").subscribe((res)=>{
+    this.http.get("http://10.3.141.155:8080/getcategories").subscribe((res)=>{
        this.datas=res["data"];
        if(Object.keys(this.datas).length==0){
          this.yo=true;
@@ -68,7 +68,7 @@ export class DashboardPage {
     });
     loading.present();
     this.storage.get("user").then((val)=>{
-      this.http.post("http://192.168.0.108:8080/addtocart",{
+      this.http.post("http://10.3.141.155:8080/addtocart",{
         username:val,
         category:category,
         type:type,
